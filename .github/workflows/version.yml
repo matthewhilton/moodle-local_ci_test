@@ -15,3 +15,14 @@ jobs:
       internal_workflow_repository: matthewhilton/catalyst-moodle-workflows
       moodle_plugin_ci_repo: https://github.com/matthewhilton/moodle-plugin-ci.git
       moodle_plugin_ci_ref: 391-version-validation
+      disable_behat: true
+      disable_mustache: true
+      disable_phplint: true
+      disable_phpdoc: true
+      disable_phpcs: true
+      disable_phpunit: true
+      disable_grunt: true
+      disable_master: true
+      disable_release: true
+      enable_release: false
+      disable_ci_validate: true
