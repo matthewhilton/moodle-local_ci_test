@@ -2,7 +2,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'local_ci_test';
-$plugin->version   = 2026010100;
+$plugin->version   = 2026010101;
 $plugin->requires  = 2024100700;
 $plugin->release   = '0.1';
 $plugin->maturity  = MATURITY_ALPHA;
