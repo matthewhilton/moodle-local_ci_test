@@ -15,4 +15,3 @@ jobs:
       internal_workflow_repository: matthewhilton/catalyst-moodle-workflows
       moodle_plugin_ci_repo: https://github.com/matthewhilton/moodle-plugin-ci.git
       moodle_plugin_ci_ref: 391-version-validation
-      version_check_only: true
