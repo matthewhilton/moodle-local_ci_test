@@ -1,55 +1,26 @@
 name: Version check
 
-on: [push, pull_request]
+on:
+  pull_request:
+    branches: ['MOODLE_*_STABLE']
 
 permissions:
   contents: read
 
 jobs:
   version:
-    runs-on: ubuntu-24.04
-
-    env:
-      # Set the repository variable VERSION_POLICY to "frozen" for frozen branches.
-      VERSION_POLICY: ${{ vars.VERSION_POLICY || 'latest' }}
-
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v6
-        with:
-          path: plugin
-          fetch-depth: 0
-          persist-credentials: false
-
-      - name: Extract baseline version.php
-        env:
-          BASE_SHA: ${{ github.event.pull_request.base.sha }}
-        run: |
-          base="${BASE_SHA:-HEAD~1}"
-          mkdir baseline
-          if git -C plugin cat-file -e "$base:version.php" 2>/dev/null; then
-            git -C plugin show "$base:version.php" > baseline/version.php
-          fi
-
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-          coverage: none
-
-      - name: Install moodle-plugin-ci from the version branch
-        run: |
-          git clone --depth 1 --branch "$CI_BRANCH" "$CI_REPO" ci
-          composer install -d ci -n --no-dev --prefer-dist
-          echo "$GITHUB_WORKSPACE/ci/bin" >> "$GITHUB_PATH"
-        env:
-          CI_REPO: https://github.com/matthewhilton/moodle-plugin-ci.git
-          CI_BRANCH: 391-version-validation
-
-      - name: Check version.php
-        run: |
-          if [ -f baseline/version.php ]; then
-            moodle-plugin-ci version plugin --baseline-dir baseline --version-policy "$VERSION_POLICY"
-          else
-            moodle-plugin-ci version plugin
-          fi
+    uses: matthewhilton/catalyst-moodle-workflows/.github/workflows/ci.yml@version-bump-check
+    with:
+      internal_workflow_branch: version-bump-check
+      moodle_plugin_ci_repo: https://github.com/matthewhilton/moodle-plugin-ci.git
+      moodle_plugin_ci_ref: 391-version-validation
+      disable_behat: true
+      disable_mustache: true
+      disable_phplint: true
+      disable_phpdoc: true
+      disable_phpcs: true
+      disable_phpunit: true
+      disable_grunt: true
+      disable_master: true
+      disable_release: true
+      disable_ci_validate: true
