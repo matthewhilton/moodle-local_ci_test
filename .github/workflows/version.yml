@@ -12,6 +12,7 @@ jobs:
     uses: matthewhilton/catalyst-moodle-workflows/.github/workflows/ci.yml@version-bump-check
     with:
       internal_workflow_branch: version-bump-check
+      internal_workflow_repository: matthewhilton/catalyst-moodle-workflows
       moodle_plugin_ci_repo: https://github.com/matthewhilton/moodle-plugin-ci.git
       moodle_plugin_ci_ref: 391-version-validation
       disable_behat: true
