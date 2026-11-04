@@ -43,7 +43,7 @@ jobs:
           composer install -d ci -n --no-dev --prefer-dist
           echo "$GITHUB_WORKSPACE/ci/bin" >> "$GITHUB_PATH"
         env:
-          CI_REPO: https://github.com/matthewhilton/moodle-plugin-ci.git
+          CI_REPO: https://github.com/catalyst/moodle-plugin-ci.git
           CI_BRANCH: 391-version-validation
 
       - name: Check version.php
