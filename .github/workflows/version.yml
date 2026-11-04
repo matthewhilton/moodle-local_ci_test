@@ -13,7 +13,7 @@ jobs:
     with:
       internal_workflow_branch: version-bump-check
       internal_workflow_repository: matthewhilton/catalyst-moodle-workflows
-      moodle_plugin_ci_repo: https://github.com/matthewhilton/moodle-plugin-ci.git
+      moodle_plugin_ci_repo: https://github.com/catalyst/moodle-plugin-ci.git
       moodle_plugin_ci_ref: 391-version-validation
       disable_behat: true
       disable_mustache: true
