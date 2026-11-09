@@ -2,7 +2,7 @@ name: Version check
 
 on:
   pull_request:
-    branches: ['MOODLE_*_STABLE']
+    branches: ['MOODLE_*_STABLE', 'mdl*-*']
 
 permissions:
   contents: read
@@ -26,3 +26,4 @@ jobs:
       disable_release: true
       enable_release: false
       disable_ci_validate: true
+      version_branch_pattern: '/^mdl(?<version>[0-9]+)-(?<group>[a-z0-9]+)$/'
