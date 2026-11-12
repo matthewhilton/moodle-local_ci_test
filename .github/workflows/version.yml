@@ -2,16 +2,18 @@ name: Version check
 
 on:
   pull_request:
-    branches: ['MOODLE_*_STABLE']
+    branches: ['MOODLE_*_STABLE', 'mdl*-*']
 
 permissions:
   contents: read
 
 jobs:
   version:
-    uses: matthewhilton/catalyst-moodle-workflows/.github/workflows/ci.yml@version-bump-check
+    permissions:
+      contents: write
+    uses: matthewhilton/catalyst-moodle-workflows/.github/workflows/ci.yml@make-version-check-clearer
     with:
-      internal_workflow_branch: version-bump-check
+      internal_workflow_branch: make-version-check-clearer
       internal_workflow_repository: matthewhilton/catalyst-moodle-workflows
       moodle_plugin_ci_repo: https://github.com/catalyst/moodle-plugin-ci.git
       moodle_plugin_ci_ref: 391-version-validation
@@ -26,3 +28,4 @@ jobs:
       disable_release: true
       enable_release: false
       disable_ci_validate: true
+      version_branch_pattern: '/^mdl(?<version>[0-9]+)-(?<group>[a-z0-9]+)$/'
