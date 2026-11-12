@@ -9,6 +9,8 @@ permissions:
 
 jobs:
   version:
+    permissions:
+      contents: write
     uses: matthewhilton/catalyst-moodle-workflows/.github/workflows/ci.yml@make-version-check-clearer
     with:
       internal_workflow_branch: make-version-check-clearer
